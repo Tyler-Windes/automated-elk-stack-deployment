@@ -1,98 +1,83 @@
-## Automated ELK Stack Deployment
+#### Automated ELK Stack Deployment
 
-The files in this repository were used to configure the network depicted below.
+This repository contains an ELK Stack deployment lab using Ansible, Docker, Filebeat, and Metricbeat in a controlled Azure/Linux environment.
 
-https://github.com/Cryptogarden/Automated-ELK-Stack-Deployment/blob/main/Network%20Diagram.jpg
+The project documents infrastructure automation, monitoring configuration, network layout, access controls, and deployment steps for a small security-monitoring lab.
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat.
+##### Project Scope
 
-- elk_stack-playbook.yml (https://github.com/Cryptogarden/Automated-ELK-Stack-Deployment/blob/main/docker%20setup-playbook.yml)
+This was a controlled training environment. It was not connected to production infrastructure, customer systems, or private employer environments.
 
-- docker setup-playbook.yml (https://github.com/Cryptogarden/Automated-ELK-Stack-Deployment/blob/main/docker%20setup-playbook.yml)
+The lab demonstrates how infrastructure automation can be used to configure monitoring components and supporting Linux systems in a repeatable way.
 
-- filebeat-playbook.yml (https://github.com/Cryptogarden/Automated-ELK-Stack-Deployment/blob/main/filebeat-playbook.yml)
+##### Network Overview
 
-- metricbeat-playbook.yml (https://github.com/Cryptogarden/Automated-ELK-Stack-Deployment/blob/main/metricbeat-playbook.yml)
+The deployment used a small Azure-based lab network with a jump box, web servers, and an ELK server.
 
- 
-This document contains the following details:
-- Description of the Topology
-- Access Policies
-- ELK Configuration
-  - Beats in Use
-  - Machines Being Monitored
-- How to Use the Ansible Build
+The network diagram included in this repository documents the intended lab structure and access relationships.
 
+##### Included Files
 
-### Description of the Topology
+* `Network Diagram.jpg`
+* `ansible.cfg`
+* `filebeat-config.yml`
+* `filebeat-playbook.yml`
+* `hosts`
+* `install-elk.yml`
+* `metricbeat-config.yml`
+* `metricbeat-playbook.yml`
+* `pentest.yml`
+* `sysctl.conf`
 
-The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
+##### Focus Areas
 
-Load balancing ensures that the application will be highly available, in addition to restricting inbound access to the network.
-- The load balancer provides redundancy, helping to prevent any downtime. The advantage of using a jump box is to prevent connections with the internet facing side of the network and provides an extra layer of security.
+* Infrastructure automation
+* Linux administration concepts
+* Docker-based deployment
+* Ansible playbook structure
+* ELK Stack monitoring concepts
+* Filebeat configuration
+* Metricbeat configuration
+* Network documentation
+* Security operations concepts
+* Technical documentation
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the file systems of VMs on the network and system metrics.
-- Filebeat is used to detect changes to the filesystem by collecting Apache logs.
-- Metricbeat is used to changes in system metrics such as CPU usage.
+##### Lab Components
 
-The configuration details of each machine may be found below.
+###### Jump Box
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.4   | Linux            |
-| DVWA 1   |Web Server| 10.0.0.5   | Linux            |
-| DVWA 2   |Web Server| 10.0.0.6   | Linux            |
-| ELK      |Monitoring| 10.1.0.4   | Linux            |
+The jump box was used as the administrative control point for running Ansible playbooks and managing lab configuration.
 
-### Access Policies
+###### Web Servers
 
-The machines on the internal network are not exposed to the public Internet. 
+The web servers represented monitored systems in the lab environment.
 
-Only the ELK machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses: 10.0.0.5,10.0.0.6
+###### ELK Server
 
-Machines within the network can only be accessed by Jump Box.
-In this configuration only the DVWA 1 and DVWA 2 (10.0.0.5,10.0.0.6) machines had access to the ELK VM.
+The ELK server hosted the monitoring stack used to collect and review log and metric data from the lab systems.
 
-A summary of the access policies in place can be found in the table below.
+###### Filebeat
 
-| Name     | Publicly Accessible | Allowed IP Addresses |
-|----------|---------------------|----------------------|
-| Jump Box | Yes                 | Nat IP for Admin     |
-| ELK      | No                  | 10.1.0.4             |
-| DVWA 1   | No                  | 10.0.0.5             |
-| DVWA 2   | No                  | 10.0.0.6             |
+Filebeat was used to collect and forward log data from monitored systems.
 
-### Elk Configuration
+###### Metricbeat
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because it requires less time and resources, it ensures each deployment is the same and compatible, and it can help to avoid errors in syntax or other issues.
+Metricbeat was used to collect and forward system metric data from monitored systems.
 
-The playbook implements the following tasks:
-- Install docker
-- Install python
-- Install docker python module
-- Download and launch a docker elk container
+##### Ansible Playbooks
 
-### Target Machines & Beats
-This ELK server is configured to monitor the following machines:
-- DVWA 1/10.0.0.5
-- DVWA 2/10.0.0.6
+The Ansible playbooks in this repository were used to automate setup tasks across the lab environment, including Docker installation, ELK deployment, Filebeat configuration, and Metricbeat configuration.
 
-I have installed the following Beats on these machines:
-- Filebeat
-- Metricbeat
+##### Security and Access Notes
 
-These Beats allow us to collect the following information from each machine:
-- Filebeat is used to detect changes to the filesystem by collecting Apache logs.
-- Metricbeat detects changes in system metrics such as CPU usage. It can be used to detect failed login attempts or sudo escalations, as well as CPU/RAM statistics.
+The lab used controlled access rules appropriate for a training environment. Administrative access was intended to flow through the jump box rather than exposing all systems broadly.
 
-### Using the Playbook
-To use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
+##### Related Repositories
 
-SSH into the control node and follow the steps below:
-- Copy the playbook file to Ansible control node.
-- Update the hosts file to include hosts and targets.
-- Run the playbook and navigate to http://10.1.0.4:5601 to check that the installation worked as expected.
+* cybersecurity-foundation-notes
+* red-vs-blue-attack-analysis
+* ai-assisted-workflow-analysis-demo
 
-The playbook to setup the network and deploy the Elk server is “elk_stack-playbook.yml”. It should be copied to the home/etc/ansible/ folder.
-- To make Ansible run the playbook on a different machine, edit the config.yml file in the /home/etc/ansible directory. You will specify which machine to install a specified playbook to by providing the IP addresses for each machine in the Ansible config.yml file.
-- To ensure the playbook was successfully deployed on a machine, this can be verified by navigating to http://<*new elk stack VMs IP*>:5601
+##### Current Context
+
+This is a historical infrastructure and security-monitoring lab project. It supports my broader work in systems analysis, automation, workflow design, security-minded technical analysis, and technical documentation.
