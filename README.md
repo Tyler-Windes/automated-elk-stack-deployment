@@ -12,35 +12,30 @@ The lab demonstrates how infrastructure automation can be used to configure moni
 
 ##### Network Overview
 
-The deployment used a small Azure-based lab network with a jump box, web servers, and an ELK server.
+The deployment used a small Azure-based lab network with a jump box, web servers, load balancer, and ELK server.
 
-The network diagram included in this repository documents the intended lab structure and access relationships.
+The network diagram included in this repository documents the intended lab structure, access relationships, and log-flow concept for the monitored systems.
 
 ##### Included Files
 
-* `Network Diagram.jpg`
-* `ansible.cfg`
-* `filebeat-config.yml`
-* `filebeat-playbook.yml`
-* `hosts`
-* `install-elk.yml`
-* `metricbeat-config.yml`
-* `metricbeat-playbook.yml`
-* `pentest.yml`
-* `sysctl.conf`
+- `Network Diagram.jpg`
+- `docker setup-playbook.yml`
+- `elk_stack-playbook.yml`
+- `filebeat-playbook.yml`
+- `metricbeat-playbook.yml`
 
 ##### Focus Areas
 
-* Infrastructure automation
-* Linux administration concepts
-* Docker-based deployment
-* Ansible playbook structure
-* ELK Stack monitoring concepts
-* Filebeat configuration
-* Metricbeat configuration
-* Network documentation
-* Security operations concepts
-* Technical documentation
+- Infrastructure automation
+- Linux administration concepts
+- Docker-based deployment
+- Ansible playbook structure
+- ELK Stack monitoring concepts
+- Filebeat configuration
+- Metricbeat configuration
+- Network documentation
+- Security operations concepts
+- Technical documentation
 
 ##### Lab Components
 
@@ -72,12 +67,16 @@ The Ansible playbooks in this repository were used to automate setup tasks acros
 
 The lab used controlled access rules appropriate for a training environment. Administrative access was intended to flow through the jump box rather than exposing all systems broadly.
 
+##### Historical Note
+
+This is an older infrastructure and security-monitoring lab project. The included playbooks are preserved as training artifacts rather than current production deployment scripts.
+
 ##### Related Repositories
 
-* cybersecurity-foundation-notes
-* red-vs-blue-attack-analysis
-* ai-assisted-workflow-analysis-demo
+- cybersecurity-foundation-notes
+- red-vs-blue-attack-analysis
+- ai-assisted-workflow-analysis-demo
 
 ##### Current Context
 
-This is a historical infrastructure and security-monitoring lab project. It supports my broader work in systems analysis, automation, workflow design, security-minded technical analysis, and technical documentation.
+This project supports my broader work in systems analysis, automation, workflow design, security-minded technical analysis, and technical documentation.
